@@ -32,7 +32,7 @@ public class ProductSellDAO {
 		Statement st = null;
 		ResultSet rs = null;
 		String sql = "SELECT * FROM 객소모델.product_sell;";
-		ArrayList<ProductSellDTO> ProductSellDTO = new ArrayList<ProductSellDTO>();
+		ArrayList<ProductSellDTO> productSells = new ArrayList<ProductSellDTO>();
 		
 		try {
 			conn = ds.getConnection(); //데이터 소스로 연결
@@ -52,13 +52,13 @@ public class ProductSellDAO {
 				String seller = rs.getString("Seller");
 
 				ProductSellDTO psDTO = new ProductSellDTO(sell_ID, product_ID, quantity,price,sell_Date,seller);
-				ProductSellDTO.add(psDTO);
+				productSells.add(psDTO);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
-		return ProductSellDTO;
+		return productSells;
 	}
 	
 }
