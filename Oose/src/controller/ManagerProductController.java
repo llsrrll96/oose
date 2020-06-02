@@ -10,26 +10,30 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import persistance.*;
+import persistance.Product;
+import persistance.ProductDAO;
 
-//판매 실적 집계
-@WebServlet("/productSell/*")
-public class ProductSellController extends HttpServlet{
-	private ProductSellDAO productSellDAO = new ProductSellDAO();
+@WebServlet("/mngProduct")
+public class ManagerProductController  extends HttpServlet{
+	private ProductDAO productDAO = new ProductDAO();
 	
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		ArrayList<ProductSell> productSellList;
-		productSellList = productSellDAO.displayProductSell();
 		
-		req.setAttribute("productSellList", productSellList); //jsp 페이지로 넘기기
+		ArrayList<Product> productList;
+		productList = productDAO.displayProduct();
 		
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/ProductSellView.jsp");
+		req.setAttribute("productList", productList); //jsp 페이지로 넘기기
+		
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/ManagerProductView.jsp");
 		dispatcher.forward(req, resp);
 		
 //		dispatcher.include(req, resp); //계속 이용 푸터 헤더, 요청 jsp로 돌아온다.
 //		dispatcher = req.getRequestDispatcher("/footer.jsp");
 //		dispatcher.include(req, resp);
+		
+		
+		
 	}
 
 }

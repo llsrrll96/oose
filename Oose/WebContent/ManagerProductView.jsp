@@ -8,18 +8,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>상품 정보</title>
+    <title>관리자용 상품 정보</title>
 	
    	<link href="${pageContext.request.contextPath}/css/UPV.css" rel="stylesheet" type="text/css">
 </head>
 <body>
     <div class="m_contents">
         <div class="search_contents">
-            <form action="<%=request.getContextPath()%>/UserProductSearchView.jsp", method="post">
-                <input type="text" name="searchText">
-                <input type="submit" value="검색">
-            </form>
-
         </div>
         <div class="product_contents">
             <h4>상품 목록</h4>
@@ -31,6 +26,8 @@
                         <th>상품 분류</th>
                         <th>상품 가격</th>
                         <th>상품 수량</th>
+                        <th>수정</th>
+                        <th>삭제</th>
                     </tr>
                 </thead>
                 <%
@@ -46,6 +43,8 @@
                         <td>${dto.product_Kinds}</td>
                         <td>${dto.product_Price}</td>
                         <td>${dto.product_Stock}</td>
+                        <td><a href="UpdateProductView.jsp?id=<%=dto.getProduct_ID() %>" >수정</a></td>
+                        <td><a href="DeleteProductView.jsp?id=<%=dto.getProduct_ID() %>" >삭제</a></td>
                     </tr>
                 </tbody>
                 <%} %>

@@ -1,15 +1,15 @@
 package persistance;
 
-public class ProductDTO {
+public class Product {
 	private String product_ID;
 	private String product_Name;
 	private String product_Kinds;
 	private int product_Price;
 	private int product_Stock;
 	
-	public ProductDTO() {}
+	public Product() {}
 	
-	public ProductDTO(String product_ID, String product_Name, String product_Kinds, int product_Price,
+	public Product(String product_ID, String product_Name, String product_Kinds, int product_Price,
 			int product_Stock) {
 		super();
 		this.product_ID = product_ID;

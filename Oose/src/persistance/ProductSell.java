@@ -2,7 +2,7 @@ package persistance;
 
 import java.time.LocalDateTime;
 
-public class ProductSellDTO {
+public class ProductSell {
 	private String sell_ID;
 	private String product_ID;
 	private int quantity;
@@ -10,9 +10,9 @@ public class ProductSellDTO {
 	private LocalDateTime sell_Date;
 	private String seller;
 	
-	public ProductSellDTO() {}
+	public ProductSell() {}
 	
-	public ProductSellDTO(String sell_ID, String product_ID, int quantity, int price, LocalDateTime sell_Date,
+	public ProductSell(String sell_ID, String product_ID, int quantity, int price, LocalDateTime sell_Date,
 			String seller) {
 		this.sell_ID = sell_ID;
 		this.product_ID = product_ID;

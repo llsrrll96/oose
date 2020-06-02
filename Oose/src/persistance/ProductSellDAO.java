@@ -27,12 +27,12 @@ public class ProductSellDAO {
 	}
 	
 	//보여주는 함수
-	public ArrayList<ProductSellDTO> displayProductSell() {
+	public ArrayList<ProductSell> displayProductSell() {
 		Connection conn = null;
 		Statement st = null;
 		ResultSet rs = null;
 		String sql = "SELECT * FROM 객소모델.product_sell;";
-		ArrayList<ProductSellDTO> productSells = new ArrayList<ProductSellDTO>();
+		ArrayList<ProductSell> productSells = new ArrayList<ProductSell>();
 		
 		try {
 			conn = ds.getConnection(); //데이터 소스로 연결
@@ -51,7 +51,7 @@ public class ProductSellDAO {
 				LocalDateTime sell_Date = rs.getTimestamp("Sell_Date").toLocalDateTime();
 				String seller = rs.getString("Seller");
 
-				ProductSellDTO psDTO = new ProductSellDTO(sell_ID, product_ID, quantity,price,sell_Date,seller);
+				ProductSell psDTO = new ProductSell(sell_ID, product_ID, quantity,price,sell_Date,seller);
 				productSells.add(psDTO);
 			}
 		} catch (SQLException e) {

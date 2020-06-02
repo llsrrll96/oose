@@ -1,5 +1,5 @@
-@charset "EUC-KR";
-<!--°Ë»ö-->
+
+<!--ê²€ìƒ‰-->
         .search_contents{
             border:1px solid #dfdfdf;
             width: 800px;
@@ -8,16 +8,29 @@
             margin-bottom: 30px;
         }
 
-        <!--Å×ÀÌºí-->
-        .productTb{
-            width:100%;
-            border-collapse: collapse;
+
+        <!--í…Œì´ë¸”-->
+        
+        table {
+    		width: 100%;
+    		border: 1px solid #444444;
+   			border-collapse: collapse;
             border-spacing: 0;
             margin-bottom: 30px;
-        }
+  		}
+  		
         .productTb >thead > tr > th{
             height: 32px;
             border: 1px #dfdfdf solid;
             background: #f2f2f2;
             vertical-align: middle;
+            
+            border: 1px solid #444444;
+    		padding: 10px;
         }
+        
+        .productTb >tbody > tr > td {
+    		border: 1px solid #444444;
+    		padding: 10px;
+    		
+  		}

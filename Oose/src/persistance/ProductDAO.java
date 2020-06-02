@@ -1,9 +1,6 @@
 package persistance;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -25,21 +22,17 @@ public class ProductDAO {
 		}
 	}
 	//상품 검색
-	public ArrayList<ProductDTO> searchProduct(String productName){ 
-		Connection conn = null;
-		Statement st = null;
-		ResultSet rs = null;
-		String sql = "SELECT * FROM 객소모델.product WHERE Product_Name LIKE '%"+productName+"%';";
-		ArrayList<ProductDTO> products = new ArrayList<ProductDTO>();
-		
-		try {
-			conn = ds.getConnection(); //데이터 소스로 연결
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+	public ArrayList<Product> searchProduct(String productName){ 
+		ArrayList<Product> products = new ArrayList<Product>();
 		try {//쿼리 수행 해서 값을 넘긴다.
-			st = conn.createStatement();
-			rs = st.executeQuery(sql);
+		Connection conn = conn = ds.getConnection(); //데이터 소스로 연결
+		Statement st = st = conn.createStatement();
+		String sql = "SELECT * FROM 객소모델.product WHERE Product_Name LIKE '%"+productName+"%';";
+		ResultSet rs = rs = st.executeQuery(sql);
+		
+		
+			
+			
 			while (rs.next()) {
 				String product_ID = rs.getString("Product_ID");
 				String product_Name = rs.getString("Product_Name");
@@ -47,9 +40,12 @@ public class ProductDAO {
 				int product_Price = rs.getInt("Product_Price");
 				int product_Stock = rs.getInt("Product_Stock");
 				
-				ProductDTO pDTO = new ProductDTO(product_ID,product_Name,product_Kinds,product_Price,product_Stock);
+				Product pDTO = new Product(product_ID,product_Name,product_Kinds,product_Price,product_Stock);
 				products.add(pDTO);
 			}
+			  if(rs != null) try { rs.close(); } catch(SQLException sqle) {}
+	            if(st != null) try { st.close(); } catch(SQLException sqle) {}
+	            if(conn != null) try { conn.close(); } catch(SQLException sqle) {}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -59,22 +55,16 @@ public class ProductDAO {
 	
 	
 	//상품 조회
-	public ArrayList<ProductDTO> displayProduct(){ 
-		Connection conn = null;
-		Statement st = null;
-		ResultSet rs = null;
-		String sql = "SELECT * FROM 객소모델.product;";
-		ArrayList<ProductDTO> products = new ArrayList<ProductDTO>();
-		
-		try {
-			conn = ds.getConnection(); //데이터 소스로 연결
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+	public ArrayList<Product> displayProduct(){ 
+		ArrayList<Product> products = new ArrayList<Product>();
 		
 		try {//쿼리 수행 해서 값을 넘긴다.
-			st = conn.createStatement();
-			rs = st.executeQuery(sql);
+		Connection conn = conn = ds.getConnection(); //데이터 소스로 연결
+		Statement st = conn.createStatement();
+		String sql = "SELECT * FROM 객소모델.product;";
+		ResultSet rs = st.executeQuery(sql);
+		
+		
 			while (rs.next()) {
 				String product_ID = rs.getString("Product_ID");
 				String product_Name = rs.getString("Product_Name");
@@ -82,9 +72,12 @@ public class ProductDAO {
 				int product_Price = rs.getInt("Product_Price");
 				int product_Stock = rs.getInt("Product_Stock");
 				
-				ProductDTO pDTO = new ProductDTO(product_ID,product_Name,product_Kinds,product_Price,product_Stock);
+				Product pDTO = new Product(product_ID,product_Name,product_Kinds,product_Price,product_Stock);
 				products.add(pDTO);
 			}
+			if(rs != null) try { rs.close(); } catch(SQLException sqle) {}
+            if(st != null) try { st.close(); } catch(SQLException sqle) {}
+            if(conn != null) try { conn.close(); } catch(SQLException sqle) {}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -96,6 +89,21 @@ public class ProductDAO {
 	//수정
 	
 	//삭제
-	
+	public void deleteProduct(String id) {
+		try {//쿼리 수행 해서 값을 넘긴다.
+			Connection conn = conn = ds.getConnection(); //데이터 소스로 연결
+			String sql = "DELETE FROM `객소모델`.`product` WHERE Product_ID = ?";
+			PreparedStatement pstmt= conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			int rowCount = pstmt.executeUpdate();
+		
+		
+        if(pstmt != null) try { pstmt.close(); } catch(SQLException sqle) {}
+        if(conn != null) try { conn.close(); } catch(SQLException sqle) {}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
 	
 }

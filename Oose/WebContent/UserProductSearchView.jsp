@@ -1,14 +1,14 @@
 <%@ page import = "java.util.List" %>
-<%@ page import="persistance.ProductDTO"%>
+<%@ page import="persistance.Product"%>
 <%@ page import="persistance.ProductDAO"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>»óÇ° Á¤º¸</title>
+    <title>ìƒí’ˆ ì •ë³´</title>
 	
    	<link href="${pageContext.request.contextPath}/css/UPV.css" rel="stylesheet" type="text/css">
 </head>
@@ -17,32 +17,32 @@
         <div class="search_contents">
             <form action="<%=request.getContextPath()%>/UserProductSearchView.jsp", method="post">
                 <input type="text" name="searchText">
-                <input type="submit" value="°Ë»ö">
+                <input type="submit" value="ê²€ìƒ‰">
             </form>
 
         </div>
         <div class="product_contents">
-            <h4>»óÇ° ¸ñ·Ï</h4>
+            <h4>ìƒí’ˆ ëª©ë¡</h4>
             <table class="productTb">
                 <thead>
                     <tr>
-                        <th>»óÇ° ÄÚµå</th>
-                        <th>»óÇ°¸í</th>
-                        <th>»óÇ° ºĞ·ù</th>
-                        <th>»óÇ° °¡°İ</th>
-                        <th>»óÇ° ¼ö·®</th>
+                        <th>ìƒí’ˆ ì½”ë“œ</th>
+                        <th>ìƒí’ˆëª…</th>
+                        <th>ìƒí’ˆ ë¶„ë¥˜</th>
+                        <th>ìƒí’ˆ ê°€ê²©</th>
+                        <th>ìƒí’ˆ ìˆ˜ëŸ‰</th>
                     </tr>
                 </thead>
                          
                 <%
-                	request.setCharacterEncoding("euc-kr");
-                	String productName = request.getParameter("searchText");
-                	
-                	ProductDAO productDAO = new ProductDAO();
-                	List<ProductDTO> searchList = productDAO.searchProduct(productName);
-                	for(ProductDTO dto : searchList){
-                		pageContext.setAttribute("dto", dto);
-                %>
+                                         	request.setCharacterEncoding("UTF-8");
+                                                         	String productName = request.getParameter("searchText");
+                                                         	
+                                                         	ProductDAO productDAO = new ProductDAO();
+                                                         	List<Product> searchList = productDAO.searchProduct(productName);
+                                                         	for(Product dto : searchList){
+                                                         		pageContext.setAttribute("dto", dto);
+                                         %>
                 <tbody>
                     <tr>
                         <td>${dto.product_ID}</td>
