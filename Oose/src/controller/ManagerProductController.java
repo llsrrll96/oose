@@ -32,8 +32,6 @@ public class ManagerProductController  extends HttpServlet{
 //		dispatcher = req.getRequestDispatcher("/footer.jsp");
 //		dispatcher.include(req, resp);
 		
-		
-		
 	}
 
 }

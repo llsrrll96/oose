@@ -14,13 +14,7 @@
 </head>
 <body>
     <div class="m_contents">
-        <div class="search_contents">
-            <form action="<%=request.getContextPath()%>/UserProductSearchView.jsp", method="post">
-                <input type="text" name="searchText">
-                <input type="submit" value="검색">
-            </form>
-
-        </div>
+ 
         <div class="product_contents">
             <h4>상품 판매 집계 현황</h4>
             <table class="productTb">

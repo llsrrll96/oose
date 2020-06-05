@@ -25,14 +25,11 @@ public class ProductDAO {
 	public ArrayList<Product> searchProduct(String productName){ 
 		ArrayList<Product> products = new ArrayList<Product>();
 		try {//쿼리 수행 해서 값을 넘긴다.
-		Connection conn = conn = ds.getConnection(); //데이터 소스로 연결
-		Statement st = st = conn.createStatement();
-		String sql = "SELECT * FROM 객소모델.product WHERE Product_Name LIKE '%"+productName+"%';";
-		ResultSet rs = rs = st.executeQuery(sql);
+		Connection conn = ds.getConnection(); //데이터 소스로 연결
+		Statement st = conn.createStatement();
+		String sql = "SELECT * FROM sogongdo.product WHERE Product_Name LIKE '%"+productName+"%';";
+		ResultSet rs = st.executeQuery(sql);
 		
-		
-			
-			
 			while (rs.next()) {
 				String product_ID = rs.getString("Product_ID");
 				String product_Name = rs.getString("Product_Name");
@@ -59,9 +56,9 @@ public class ProductDAO {
 		ArrayList<Product> products = new ArrayList<Product>();
 		
 		try {//쿼리 수행 해서 값을 넘긴다.
-		Connection conn = conn = ds.getConnection(); //데이터 소스로 연결
+		Connection conn = ds.getConnection(); //데이터 소스로 연결
 		Statement st = conn.createStatement();
-		String sql = "SELECT * FROM 객소모델.product;";
+		String sql = "SELECT * FROM sogongdo.product;";
 		ResultSet rs = st.executeQuery(sql);
 		
 		
@@ -85,14 +82,65 @@ public class ProductDAO {
 	}
 	
 	//등록
+	public void enrollProduct(String name, String kinds, int price, int stock) {
+		 String product_Name = name;
+		 String product_Kinds = kinds;
+		 int product_Price = price;
+		 int product_Stock = stock;
+		 int rowCount = 0;
+		try {//쿼리 수행 해서 값을 넘긴다.
+			Connection conn = ds.getConnection(); //데이터 소스로 연결
+			String sql = "INSERT INTO `sogongdo`.`product`(`Product_Name`,`Product_Kinds`,`Product_Price`,`Product_Stock`)\r\n" 
+					+ "VALUES (?, ?, ?, ?)";
+			PreparedStatement pstmt= conn.prepareStatement(sql);
+			pstmt.setString(1, product_Name);
+			pstmt.setString(2, product_Kinds);
+			pstmt.setInt(3, product_Price);
+			pstmt.setInt(4, product_Stock);
+			rowCount = pstmt.executeUpdate();
+		
+		
+        if(pstmt != null) try { pstmt.close(); } catch(SQLException sqle) {}
+        if(conn != null) try { conn.close(); } catch(SQLException sqle) {}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
 	
 	//수정
+	public void updateProduct(String id, String name, String kinds, int price, int stock) {
+		 String product_ID = id;
+		 String product_Name = name;
+		 String product_Kinds = kinds;
+		 int product_Price = price;
+		 int product_Stock = stock;
+		
+		try {//쿼리 수행 해서 값을 넘긴다.
+			Connection conn = ds.getConnection(); //데이터 소스로 연결
+			String sql = "UPDATE `sogongdo`.`product` SET `Product_Name` = ?,`Product_Kinds` = ?,`Product_Price` = ?,`Product_Stock` = ?\r\n" + 
+					"WHERE `Product_ID` = ?";
+			PreparedStatement pstmt= conn.prepareStatement(sql);
+			pstmt.setString(1, product_Name);
+			pstmt.setString(2, product_Kinds);
+			pstmt.setInt(3, product_Price);
+			pstmt.setInt(4, product_Stock);
+			pstmt.setString(5, product_ID);
+			int rowCount = pstmt.executeUpdate();
+		
+        if(pstmt != null) try { pstmt.close(); } catch(SQLException sqle) {}
+        if(conn != null) try { conn.close(); } catch(SQLException sqle) {}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
 	
 	//삭제
 	public void deleteProduct(String id) {
 		try {//쿼리 수행 해서 값을 넘긴다.
-			Connection conn = conn = ds.getConnection(); //데이터 소스로 연결
-			String sql = "DELETE FROM `객소모델`.`product` WHERE Product_ID = ?";
+			Connection conn = ds.getConnection(); //데이터 소스로 연결
+			String sql = "DELETE FROM `sogongdo`.`product` WHERE Product_ID = ?";
 			PreparedStatement pstmt= conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			int rowCount = pstmt.executeUpdate();

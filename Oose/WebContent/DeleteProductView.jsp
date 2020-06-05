@@ -5,17 +5,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>상품 삭제</title>
 </head>
 <body>
-
 
 <%
 	String id = request.getParameter("id");
 	ProductDAO productDAO = new ProductDAO();
 	productDAO.deleteProduct(id);
 
-	
 	response.sendRedirect("/oose/mngProduct");
 %>
 

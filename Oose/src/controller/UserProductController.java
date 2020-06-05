@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import persistance.*;
 
-@WebServlet("/product")
+@WebServlet("/UserProduct")
 public class UserProductController extends HttpServlet{
 	private ProductDAO productDAO = new ProductDAO();
 	
@@ -24,7 +24,7 @@ public class UserProductController extends HttpServlet{
 		
 		req.setAttribute("productList", productList); //jsp 페이지로 넘기기
 		
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/ManagerProductView.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/UserProductView.jsp");
 		dispatcher.forward(req, resp);
 		
 //		dispatcher.include(req, resp); //계속 이용 푸터 헤더, 요청 jsp로 돌아온다.

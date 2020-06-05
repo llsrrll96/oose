@@ -31,7 +31,7 @@ public class ProductSellDAO {
 		Connection conn = null;
 		Statement st = null;
 		ResultSet rs = null;
-		String sql = "SELECT * FROM 객소모델.product_sell;";
+		String sql = "SELECT * FROM sogongdo.product_sell;";
 		ArrayList<ProductSell> productSells = new ArrayList<ProductSell>();
 		
 		try {

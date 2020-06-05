@@ -8,7 +8,10 @@
             margin-bottom: 30px;
         }
 
-
+		#btnRegister{
+			border-radius:10px;
+			background-color: blue;
+		}
         <!--테이블-->
         
         table {
@@ -20,7 +23,7 @@
   		}
   		
         .productTb >thead > tr > th{
-            height: 32px;
+            height: 16px;
             border: 1px #dfdfdf solid;
             background: #f2f2f2;
             vertical-align: middle;

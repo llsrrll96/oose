@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import persistance.*;
 
 //판매 실적 집계
-@WebServlet("/productSell/*")
+@WebServlet("/productSell")
 public class ProductSellController extends HttpServlet{
 	private ProductSellDAO productSellDAO = new ProductSellDAO();
 	

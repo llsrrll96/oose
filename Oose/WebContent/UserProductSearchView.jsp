@@ -17,7 +17,7 @@
         <div class="search_contents">
             <form action="<%=request.getContextPath()%>/UserProductSearchView.jsp", method="post">
                 <input type="text" name="searchText">
-                <input type="submit" value="검색">
+                <input type="submit" value="상품명 검색">
             </form>
 
         </div>
@@ -35,14 +35,14 @@
                 </thead>
                          
                 <%
-                                         	request.setCharacterEncoding("UTF-8");
-                                                         	String productName = request.getParameter("searchText");
+                                        request.setCharacterEncoding("UTF-8");
+                                        String productName = request.getParameter("searchText");
                                                          	
-                                                         	ProductDAO productDAO = new ProductDAO();
-                                                         	List<Product> searchList = productDAO.searchProduct(productName);
-                                                         	for(Product dto : searchList){
-                                                         		pageContext.setAttribute("dto", dto);
-                                         %>
+                                        ProductDAO productDAO = new ProductDAO();
+                                        List<Product> searchList = productDAO.searchProduct(productName);
+                                        for(Product dto : searchList){
+                                            pageContext.setAttribute("dto", dto);
+               %>
                 <tbody>
                     <tr>
                         <td>${dto.product_ID}</td>
@@ -54,8 +54,16 @@
                 </tbody>
                 <%} %>
             </table>
+            <button type="button" onclick="reloadUserProductView()">목록</button>
         </div>
     </div>
-
 </body>
+
+<script>
+	function reloadUserProductView()
+	{
+		location.href="/oose/UserProduct";
+	}
+</script>
+
 </html>
