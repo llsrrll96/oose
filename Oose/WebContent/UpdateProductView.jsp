@@ -25,7 +25,8 @@
 			String kinds = request.getParameter("kinds");
 			String price = request.getParameter("price");
 			String stock = request.getParameter("stock");
-				
+			
+			
 		%>
 		<input type="text" name="Product_ID" value=<%=id %> readonly="readonly"/><br/>
 		<label for="Product_Name">상품 명</label>
@@ -41,6 +42,31 @@
 		<input type="reset" value="취소"/>
 	</fieldset>
 </form>
+	<%
+		String result = (String)request.getAttribute("updateCheck");
+	 	if(result != null && !result.isEmpty()){
+	 		if(result.equals("1")){
+	%>
+	<script>
+		//성공일때
+		(function(){
+			alert("수정 성공");
+			location.href="/oose/mngProduct";
+		})();
+	</script>
+	<%		
+		}else if(result.equals("0")){
+	%>
+	<script>
+		(function(){
+			alert("수정 실패");
+		})();
+	</script>
+	<%
+			}
+	 	} 
+	 %>
+
 
 <script type="text/javascript">
 
@@ -65,7 +91,6 @@
 			alert("숫자를 입력해주세요");
 		}else{
 			update.submit();
-			alert("수정 되었습니다!");
 		}
 		
 	}
@@ -73,3 +98,13 @@
 
 </body>
 </html>
+
+<!-- 
+모듈 설계자 : 박성용
+
+검토자 : 박성용, 김인환
+검토 날짜: 2020-06-05
+
+수정 일자 : 2020-06-08
+수정 내용 : DB 실행 결과에 따라 알림 설정, line: 46 ~ 68
+ -->

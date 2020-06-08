@@ -9,8 +9,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>상품 정보</title>
+    
+	<style type="text/css">
 	
-   	<link href="${pageContext.request.contextPath}/css/UPV.css" rel="stylesheet" type="text/css">
+<!--검색-->
+        .search_contents{
+            border:1px solid #dfdfdf;
+            width: 800px;
+            height: 48px;
+            line-height: 48px;
+            margin-bottom: 30px;
+        }
+
+		#btnRegister{
+			border-radius:10px;
+			background-color: blue;
+		}
+        <!--테이블-->
+        
+        table {
+    		width: 100%;
+    		border: 1px solid #444444;
+   			border-collapse: collapse;
+            border-spacing: 0;
+            margin-bottom: 30px;
+  		}
+  		
+        .productTb >thead > tr > th{
+            height: 16px;
+            border: 1px #dfdfdf solid;
+            background: #f2f2f2;
+            vertical-align: middle;
+            
+            border: 1px solid #444444;
+    		padding: 10px;
+        }
+        
+        .productTb >tbody > tr > td {
+    		border: 1px solid #444444;
+    		padding: 10px;
+    		
+  		}
+	
+	</style>	
 </head>
 <body>
     <div class="m_contents">
@@ -58,3 +99,10 @@
 </html>
 
 
+<!-- 
+모듈 설계자 : 박성용
+
+검토자 : 박성용, 김인환
+검토 날짜: 2020-06-05
+
+ -->

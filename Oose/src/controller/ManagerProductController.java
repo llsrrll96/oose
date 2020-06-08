@@ -23,7 +23,7 @@ public class ManagerProductController  extends HttpServlet{
 		ArrayList<Product> productList;
 		productList = productDAO.displayProduct();
 		
-		req.setAttribute("productList", productList); //jsp 페이지로 넘기기
+		req.setAttribute("productList", productList); //jsp 페이지로 값 넘기기
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/ManagerProductView.jsp");
 		dispatcher.forward(req, resp);
@@ -35,3 +35,11 @@ public class ManagerProductController  extends HttpServlet{
 	}
 
 }
+
+/*
+모듈 설계자 : 박성용
+
+검토자 : 박성용, 김인환
+검토 날짜: 2020-06-05
+
+*/

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="persistance.ProductDAO"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +10,6 @@
 <style>
 	#enrollBox{ width:300px;}
 	#enrollBox label{ display: block; width:300px; float:left;}
-
 </style>
 
 </head>
@@ -32,14 +32,36 @@
 		<input type="button" value="갱신" onClick = "reloadParentPage()"/> 
 	</fieldset>
 </form>
+	<%
+		String result = (String)request.getAttribute("checkEnroll");
+	 	if(result != null && !result.isEmpty()){
+	 		if(result.equals("1")){
+	%>
+	<script>
+		//성공일때
+		(function(){
+			alert("등록 성공");
+			window.opener.location.reload();
+		})();
+	</script>
+	<%		
+		}else if(result.equals("0")){
+	%>
+	<script>
+		(function(){
+			alert("등록 실패");
+		})();
+	</script>
+	<%
+			}
+	 	} 
+	 %>
 </body>
 
 <script type="text/javascript">
-	function reloadParentPage(){
-			window.opener.location.reload();
-	}
 	
-	function checkData(){
+	function checkData()
+	{
 		var enroll = document.enrollForm;
 		
 		var name = document.getElementById('Product_Name').value;
@@ -60,9 +82,21 @@
 			alert("숫자를 입력해주세요");
 		}else{
 			enroll.submit();
-			alert("등록 되었습니다!");
 		}
 	}
+	
+
+
 </script>
 
 </html>
+
+<!-- 
+모듈 설계자 : 박성용
+
+검토자 : 박성용, 김인환
+검토 날짜: 2020-06-05
+
+수정 일자 : 2020-06-08
+수정 내용 : DB결과에 따라 alert() 호출, line: 35 ~ 58
+ -->

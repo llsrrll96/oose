@@ -82,11 +82,11 @@ public class ProductDAO {
 	}
 	
 	//등록
-	public void enrollProduct(String name, String kinds, int price, int stock) {
-		 String product_Name = name;
-		 String product_Kinds = kinds;
-		 int product_Price = price;
-		 int product_Stock = stock;
+	public int enrollProduct(Product products) {
+		 String product_Name = products.getProduct_Name();
+		 String product_Kinds = products.getProduct_Kinds();
+		 int product_Price = products.getProduct_Price();
+		 int product_Stock = products.getProduct_Stock();
 		 int rowCount = 0;
 		try {//쿼리 수행 해서 값을 넘긴다.
 			Connection conn = ds.getConnection(); //데이터 소스로 연결
@@ -98,24 +98,24 @@ public class ProductDAO {
 			pstmt.setInt(3, product_Price);
 			pstmt.setInt(4, product_Stock);
 			rowCount = pstmt.executeUpdate();
-		
+			
 		
         if(pstmt != null) try { pstmt.close(); } catch(SQLException sqle) {}
         if(conn != null) try { conn.close(); } catch(SQLException sqle) {}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+		return rowCount; //결과 보냄
 	}
 	
 	//수정
-	public void updateProduct(String id, String name, String kinds, int price, int stock) {
-		 String product_ID = id;
-		 String product_Name = name;
-		 String product_Kinds = kinds;
-		 int product_Price = price;
-		 int product_Stock = stock;
-		
+	public int updateProduct(Product products) {
+		 String product_ID = products.getProduct_ID();
+		 String product_Name = products.getProduct_Name();
+		 String product_Kinds = products.getProduct_Kinds();
+		 int product_Price = products.getProduct_Price();
+		 int product_Stock = products.getProduct_Stock();
+		 int rowCount=0;
 		try {//쿼리 수행 해서 값을 넘긴다.
 			Connection conn = ds.getConnection(); //데이터 소스로 연결
 			String sql = "UPDATE `sogongdo`.`product` SET `Product_Name` = ?,`Product_Kinds` = ?,`Product_Price` = ?,`Product_Stock` = ?\r\n" + 
@@ -126,14 +126,14 @@ public class ProductDAO {
 			pstmt.setInt(3, product_Price);
 			pstmt.setInt(4, product_Stock);
 			pstmt.setString(5, product_ID);
-			int rowCount = pstmt.executeUpdate();
+			rowCount = pstmt.executeUpdate();
 		
         if(pstmt != null) try { pstmt.close(); } catch(SQLException sqle) {}
         if(conn != null) try { conn.close(); } catch(SQLException sqle) {}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+		return rowCount;
 	}
 	
 	//삭제
@@ -143,7 +143,7 @@ public class ProductDAO {
 			String sql = "DELETE FROM `sogongdo`.`product` WHERE Product_ID = ?";
 			PreparedStatement pstmt= conn.prepareStatement(sql);
 			pstmt.setString(1, id);
-			int rowCount = pstmt.executeUpdate();
+			pstmt.executeUpdate();
 		
 		
         if(pstmt != null) try { pstmt.close(); } catch(SQLException sqle) {}
@@ -155,3 +155,13 @@ public class ProductDAO {
 	}
 	
 }
+
+/*
+모듈 설계자 : 박성용
+
+검토자 : 박성용, 김인환
+검토 날짜: 2020-06-05
+
+수정 일자 : 
+수정 내용 : 등록 / 수정 함수 리턴 타입(int) 변경
+*/

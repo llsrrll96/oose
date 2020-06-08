@@ -33,3 +33,11 @@ public class ProductSellController extends HttpServlet{
 	}
 
 }
+
+/*
+모듈 설계자 : 박성용
+
+검토자 : 박성용, 김인환
+검토 날짜: 2020-06-05
+
+*/

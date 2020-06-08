@@ -10,7 +10,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>상품 판매 실적 집계</title>
 	
-   	<link href="${pageContext.request.contextPath}/css/UPV.css" rel="stylesheet" type="text/css">
+	<style type="text/css">
+	
+	        table {
+    		width: 100%;
+    		border: 1px solid #444444;
+   			border-collapse: collapse;
+            border-spacing: 0;
+            margin-bottom: 30px;
+  		}
+  		
+        .productTb >thead > tr > th{
+            height: 16px;
+            border: 1px #dfdfdf solid;
+            background: #f2f2f2;
+            vertical-align: middle;
+            
+            border: 1px solid #444444;
+    		padding: 10px;
+        }
+        
+        .productTb >tbody > tr > td {
+    		border: 1px solid #444444;
+    		padding: 10px;
+    		
+  		}
+	
+	</style>
+	
 </head>
 <body>
     <div class="m_contents">
@@ -55,3 +82,11 @@
 
 </body>
 </html>
+
+<!-- 
+모듈 설계자 : 박성용
+
+검토자 : 박성용, 김인환
+검토 날짜: 2020-06-05
+
+ -->

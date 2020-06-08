@@ -30,8 +30,16 @@ public class UserProductController extends HttpServlet{
 //		dispatcher.include(req, resp); //계속 이용 푸터 헤더, 요청 jsp로 돌아온다.
 //		dispatcher = req.getRequestDispatcher("/footer.jsp");
 //		dispatcher.include(req, resp);
-		
-		
 	}
 
 }
+
+/*
+<!-- 
+모듈 설계자 : 박성용
+
+검토자 : 박성용, 김인환
+검토 날짜: 2020-06-05
+
+ -->
+*/
