@@ -38,21 +38,30 @@
 	 		if(result.equals("1")){
 	%>
 	<script>
-		//성공일때
-		(function(){
-			alert("등록 성공");
-			window.opener.location.reload();
-		})();
+			//성공일때
+			(function(){
+				alert("등록 성공");
+				window.opener.location.reload();
+			})();
 	</script>
 	<%		
-		}else if(result.equals("0")){
+			}else if(result.equals("0")){
 	%>
 	<script>
-		(function(){
-			alert("등록 실패");
-		})();
+			(function(){
+				alert("등록 실패");
+			})();
 	</script>
 	<%
+			}else if(result.equals("-1")){
+				
+	%>
+		<script>
+			(function(){
+				alert("등록 실패 : 동일한 상품명 존재");
+			})();
+		</script>
+	<% 
 			}
 	 	} 
 	 %>

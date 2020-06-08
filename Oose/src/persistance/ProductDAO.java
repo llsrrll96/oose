@@ -90,7 +90,15 @@ public class ProductDAO {
 		 int rowCount = 0;
 		try {//쿼리 수행 해서 값을 넘긴다.
 			Connection conn = ds.getConnection(); //데이터 소스로 연결
-			String sql = "INSERT INTO `sogongdo`.`product`(`Product_Name`,`Product_Kinds`,`Product_Price`,`Product_Stock`)\r\n" 
+			Statement st = conn.createStatement();
+			String sql = "SELECT * FROM sogongdo.product;";
+			ResultSet rs = st.executeQuery(sql);
+			
+			while (rs.next()) {
+				if(product_Name.equals(rs.getString("Product_Name"))) return -1; //중복 검사
+			}
+			
+			sql = "INSERT INTO `sogongdo`.`product`(`Product_Name`,`Product_Kinds`,`Product_Price`,`Product_Stock`)\r\n" 
 					+ "VALUES (?, ?, ?, ?)";
 			PreparedStatement pstmt= conn.prepareStatement(sql);
 			pstmt.setString(1, product_Name);
@@ -162,6 +170,6 @@ public class ProductDAO {
 검토자 : 박성용, 김인환
 검토 날짜: 2020-06-05
 
-수정 일자 : 
+수정 일자 : 2020-06-08
 수정 내용 : 등록 / 수정 함수 리턴 타입(int) 변경
 */
