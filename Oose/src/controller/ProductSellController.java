@@ -19,6 +19,11 @@ public class ProductSellController extends HttpServlet{
 	
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		requestDisplayProductSell(req, resp);
+	}
+	
+	protected void requestDisplayProductSell(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
+	{
 		ArrayList<ProductSell> productSellList;
 		productSellList = productSellDAO.displayProductSell();
 		

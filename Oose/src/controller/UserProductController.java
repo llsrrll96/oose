@@ -19,6 +19,11 @@ public class UserProductController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+		requestDisplayProduct(req,resp);
+	}
+	
+	protected void requestDisplayProduct (HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
+	{
 		ArrayList<Product> productList;
 		productList = productDAO.displayProduct();
 		
@@ -30,6 +35,7 @@ public class UserProductController extends HttpServlet{
 //		dispatcher.include(req, resp); //계속 이용 푸터 헤더, 요청 jsp로 돌아온다.
 //		dispatcher = req.getRequestDispatcher("/footer.jsp");
 //		dispatcher.include(req, resp);
+		
 	}
 
 }
